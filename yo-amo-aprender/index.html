@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yo amo aprender · Educación Digital GCBA</title>
+<style>
+  :root {
+    --azul: #0d2f4f;
+    --azul-medio: #1a4a73;
+    --azul-claro: #e8f0f8;
+    --acento: #1a7f5a;
+    --acento-claro: #e6f4ee;
+    --acento-borde: #a8d5c2;
+    --texto: #1a1a2e;
+    --texto-suave: #4a5568;
+    --borde: #d1dce8;
+    --blanco: #ffffff;
+    --fondo: #f7f9fc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.6;
+  }
+
+  header {
+    background: var(--azul);
+    color: white;
+    padding: 0 2rem;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 0 1rem;
+  }
+
+  .header-top a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.15s;
+  }
+  .header-top a:hover { color: white; }
+  .sep { color: rgba(255,255,255,0.3); margin: 0 0.4rem; }
+  .header-titulo-actual { font-size: 0.85rem; font-weight: 600; color: white; }
+
+  .hero-seccion {
+    background: var(--azul);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    border-bottom: 3px solid var(--acento);
+  }
+
+  .hero-seccion .etiqueta {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-seccion h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-seccion p { font-size: 0.92rem; opacity: 0.8; max-width: 560px; }
+
+  .contenido {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .carta {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-left: 4px solid var(--acento);
+    border-radius: 0 10px 10px 0;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .carta-encabezado {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .carta-encabezado .icono {
+    width: 36px;
+    height: 36px;
+    background: var(--acento-claro);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .carta-encabezado h2 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--acento);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .carta-texto { font-size: 0.95rem; color: var(--texto-suave); line-height: 1.75; }
+  .carta-texto p + p { margin-top: 0.9rem; }
+
+  .carta-firma {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--borde);
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+  }
+
+  .carta-firma strong {
+    display: block;
+    font-weight: 600;
+    color: var(--texto);
+    font-size: 0.9rem;
+  }
+
+  .seccion-titulo {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--texto-suave);
+    margin-bottom: 1rem;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .tab {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--texto-suave);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .tab.activo { color: var(--azul); border-bottom-color: var(--azul); }
+  .tab:hover:not(.activo) { color: var(--azul-medio); }
+
+  /* Sub-tabs de materia */
+  .subtabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .subtab {
+    padding: 0.35rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid var(--borde);
+    background: var(--blanco);
+    cursor: pointer;
+    color: var(--texto-suave);
+    border-radius: 20px;
+    transition: all 0.15s;
+  }
+
+  .subtab.activo {
+    background: var(--azul);
+    border-color: var(--azul);
+    color: white;
+  }
+
+  .subtab:hover:not(.activo) {
+    border-color: var(--azul-medio);
+    color: var(--azul-medio);
+  }
+
+  .lista-docs { display: none; }
+  .lista-docs.visible { display: block; }
+
+  .grupo-materia { display: none; }
+  .grupo-materia.visible { display: block; }
+
+  .grupo-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--texto-suave);
+    margin: 1.25rem 0 0.6rem;
+    padding-left: 0.25rem;
+  }
+
+  .doc-item {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.625rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .doc-item:hover {
+    border-color: var(--azul-medio);
+    box-shadow: 0 2px 10px rgba(13,47,79,0.08);
+  }
+
+  .doc-numero {
+    width: 36px;
+    height: 36px;
+    background: var(--azul-claro);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--azul);
+    flex-shrink: 0;
+  }
+
+  .doc-info { flex: 1; }
+  .doc-info .doc-titulo { font-size: 0.9rem; font-weight: 600; color: var(--texto); }
+  .doc-info .doc-meta { font-size: 0.78rem; color: var(--texto-suave); margin-top: 2px; }
+
+  .doc-accion {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--azul-medio);
+    flex-shrink: 0;
+  }
+
+  footer {
+    border-top: 1px solid var(--borde);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+    margin-top: 3rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <a href="../index.html">Educación Digital</a>
+    <span class="sep">/</span>
+    <span class="header-titulo-actual">Yo amo aprender</span>
+  </div>
+</header>
+
+<div class="hero-seccion">
+  <p class="etiqueta">Serie de materiales · Nivel Primario</p>
+  <h1>Yo amo aprender</h1>
+  <p>Manuales de aprendizaje para 1.° a 7.° grado · Escuelas de la Ciudad de Buenos Aires</p>
+</div>
+
+<main class="contenido">
+
+  <div class="carta">
+    <div class="carta-encabezado">
+      <div class="icono">📖</div>
+      <h2>Sobre estos materiales</h2>
+    </div>
+    <div class="carta-texto">
+      <p><em>Yo amo aprender</em> es una serie de materiales de aprendizaje elaborados por el equipo del Ministerio de Educación de la Ciudad de Buenos Aires para acompañar el trabajo diario en las aulas de primero a séptimo grado.</p>
+      <p>Los manuales están alineados con el nuevo Diseño Curricular para la Escuela Primaria e incluyen propuestas para Lengua, Matemática y Conocimiento del Mundo. Su objetivo es garantizar que los contenidos de cada aula estén articulados con los logros establecidos por el Diseño Curricular, y que docentes, estudiantes y familias cuenten con una herramienta común para trabajar juntos.</p>
+    </div>
+  </div>
+
+  <p class="seccion-titulo">Manuales disponibles</p>
+
+  <div class="tabs">
+    <button class="tab activo" onclick="mostrarAnio('2026', this)">2026</button>
+  </div>
+
+  <div id="docs-2026" class="lista-docs visible">
+
+    <div class="subtabs">
+      <button class="subtab activo" onclick="mostrarMateria('todos', this)">Todos</button>
+      <button class="subtab" onclick="mostrarMateria('lengua', this)">Lengua</button>
+      <button class="subtab" onclick="mostrarMateria('matematica', this)">Matemática</button>
+      <button class="subtab" onclick="mostrarMateria('cdm', this)">Conocimiento del Mundo</button>
+      <button class="subtab" onclick="mostrarMateria('grados-superiores', this)">4.° a 7.°</button>
+    </div>
+
+    <!-- LENGUA -->
+    <div class="grupo-materia visible" data-materia="lengua">
+      <div class="grupo-label">Lengua</div>
+      <a class="doc-item" href="https://drive.google.com/file/d/1-Hf3jam1-ueP-et2Q_9NCQ42PRFhP8_D/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">1°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · Lengua · 1.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+      <a class="doc-item" href="https://drive.google.com/file/d/1_0xrZzM14IMb-ItWhXcnDxrR9XraMC9l/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">2°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · Lengua · 2.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+      <a class="doc-item" href="https://drive.google.com/file/d/1nqZGoXgp9yTCGnPWfyaOICub_K11Xeua/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">3°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · Lengua · 3.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+    </div>
+
+    <!-- MATEMÁTICA -->
+    <div class="grupo-materia visible" data-materia="matematica">
+      <div class="grupo-label">Matemática</div>
+      <a class="doc-item" href="https://drive.google.com/file/d/13fGSDDlZ9vpfMm3ILLAJ7yLnmqK5Zogv/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">1°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · Matemática · 1.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+      <a class="doc-item" href="https://drive.google.com/file/d/1p0DNMp9tnJTRb4apsvmMwihLyPZLR0Yc/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">2°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · Matemática · 2.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+      <a class="doc-item" href="https://drive.google.com/file/d/1U2k_Qrj0grWJxRJW487kqqpSsSNwIaxu/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">3°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · Matemática · 3.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+    </div>
+
+    <!-- CONOCIMIENTO DEL MUNDO -->
+    <div class="grupo-materia visible" data-materia="cdm">
+      <div class="grupo-label">Conocimiento del Mundo</div>
+      <a class="doc-item" href="https://drive.google.com/file/d/1PuDbK0ILw1kCsCrmJZWCKt15sf4t_yKh/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">1°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · Conocimiento del Mundo · 1.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+      <a class="doc-item" href="https://drive.google.com/file/d/1gFzdWMG7vTqhaQbEM1YGqbjafdFM70xC/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">2°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · Conocimiento del Mundo · 2.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+      <a class="doc-item" href="https://drive.google.com/file/d/1jn_IO6HU0jjDERTOTVyeuEKVqtHLxDfh/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">3°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · Conocimiento del Mundo · 3.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+    </div>
+
+    <!-- 4TO A 7MO -->
+    <div class="grupo-materia visible" data-materia="grados-superiores">
+      <div class="grupo-label">4.° a 7.° grado</div>
+      <a class="doc-item" href="https://drive.google.com/file/d/1t3yjpqex-LdPAamGKcbvqFTQ5XgiELm7/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">4°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · 4.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+      <a class="doc-item" href="https://drive.google.com/file/d/11g1rYG22aHULxOmY-LunAW7qqfXTdm92/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">5°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · 5.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+      <a class="doc-item" href="https://drive.google.com/file/d/1LU4mmX2Drntsq8y_RY4K_IHH2mfFx_bZ/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">6°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · 6.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+      <a class="doc-item" href="https://drive.google.com/file/d/1ug2jwFvxkowCkBUHXtKHlY35wGSaOWTv/view?usp=drive_link" target="_blank">
+        <div class="doc-numero">7°</div>
+        <div class="doc-info">
+          <div class="doc-titulo">Yo amo aprender · 7.° grado</div>
+          <div class="doc-meta">Manual · 2026 · PDF</div>
+        </div>
+        <span class="doc-accion">Abrir ↗</span>
+      </a>
+    </div>
+
+  </div>
+
+</main>
+
+
+
+<script>
+function mostrarAnio(anio, boton) {
+  document.querySelectorAll('.lista-docs').forEach(d => d.classList.remove('visible'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('activo'));
+  document.getElementById('docs-' + anio).classList.add('visible');
+  boton.classList.add('activo');
+}
+
+function mostrarMateria(materia, boton) {
+  document.querySelectorAll('.subtab').forEach(t => t.classList.remove('activo'));
+  boton.classList.add('activo');
+  if (materia === 'todos') {
+    document.querySelectorAll('.grupo-materia').forEach(g => g.classList.add('visible'));
+  } else {
+    document.querySelectorAll('.grupo-materia').forEach(g => {
+      g.classList.toggle('visible', g.dataset.materia === materia);
+    });
+  }
+}
+</script>
+
+</body>
+</html>
